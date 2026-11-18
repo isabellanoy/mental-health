@@ -11,6 +11,7 @@
   "type": "module",
   "scripts": {
     "build": "prisma generate && nest build",
+    "bundle:vercel": "tsc -p tsconfig.build.json --outDir dist-vercel --incremental false --noEmit false && node scripts/bundle-vercel.mjs && rm -rf dist-vercel",
     "deploy": "nest deploy",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -55,6 +56,7 @@
     "@types/pg": "^8.23.1",
     "@types/supertest": "^7.0.0",
     "@vitest/coverage-v8": "^4.1.2",
+    "esbuild": "^0.28.2",
     "oxlint": "^1.58.0",
     "oxlint-tsgolint": "^7.0.2001",
     "prettier": "^3.4.2",
