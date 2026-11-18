@@ -7,6 +7,7 @@ type NodeHandler = (req: IncomingMessage, res: ServerResponse) => void;
 
 let cached: Promise<NodeHandler> | undefined;
 
+// Punto de entrada serverless de Vercel (GET /api responde { status: 'ok' }).
 // La instancia de Nest se reutiliza entre invocaciones (warm start).
 function getHandler(): Promise<NodeHandler> {
   cached ??= (async () => {
