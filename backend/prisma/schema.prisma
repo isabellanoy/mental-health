@@ -1,0 +1,94 @@
+// Las tablas se crean con sql/schema.sql (SQL Editor de Supabase).
+// Este archivo solo describe el modelo para generar el cliente tipado de Prisma.
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Submission {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  name             String
+  age              Int      @db.SmallInt
+  mood             Int      @db.SmallInt
+  emotions         String[]
+  duration         String
+  impact           Int      @db.SmallInt
+  sleep            String
+  appetite         String
+  selfHarmThoughts String   @map("self_harm_thoughts")
+  priority         String
+  email            String
+  phone            String?
+  bestTime         String   @map("best_time")
+  consent          Boolean
+  status           String   @default("nuevo")
+  notes            String?
+
+  @@index([createdAt(sort: Desc)])
+  @@index([status])
+  @@index([priority])
+  @@map("submissions")
+}
+
+model RouletteImage {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  imageUrl    String   @map("image_url")
+  storagePath String   @map("storage_path")
+  active      Boolean  @default(true)
+
+  @@map("roulette_images")
+}
+
+model Ally {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  name        String
+  logoUrl     String   @map("logo_url")
+  storagePath String   @map("storage_path")
+  websiteUrl  String   @map("website_url")
+  position    Int      @default(0)
+  active      Boolean  @default(true)
+
+  @@map("allies")
+}
+
+model Volunteer {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  firstName    String   @map("first_name")
+  lastName     String   @map("last_name")
+  career       String
+  semester     String?
+  email        String
+  phone        String
+  helpAreas    String[] @map("help_areas")
+  availability String
+  message      String?
+  consent      Boolean
+  status       String   @default("nuevo")
+  notes        String?
+
+  @@index([createdAt(sort: Desc)])
+  @@index([status])
+  @@map("volunteers")
+}
+
+model Admin {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  name         String
+  email        String    @unique
+  passwordHash String    @map("password_hash")
+  role         String    @default("admin")
+  active       Boolean   @default(true)
+  lastLoginAt  DateTime? @map("last_login_at") @db.Timestamptz(6)
+
+  @@map("admins")
+}

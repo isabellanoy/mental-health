@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" role="img" aria-label="Logo de Aliado Dos">
+  <title>Logo de Aliado Dos</title>
+  <rect width="300" height="200" rx="24" fill="#DFF1FB"/>
+  <rect x="112" y="32" width="76" height="76" rx="22" fill="#2F7FAE" opacity="0.85"/><rect x="132" y="52" width="36" height="36" rx="10" fill="#fff" opacity="0.7"/>
+  <text x="150" y="165" text-anchor="middle" font-family="Nunito, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="30" fill="#2F7FAE">Aliado Dos</text>
+</svg>
