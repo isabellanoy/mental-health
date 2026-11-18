@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { AppModule } from '../src/app.module.js';
-import { configureApp } from '../src/setup.js';
+import { AppModule } from './app.module.js';
+import { configureApp } from './setup.js';
 
 type NodeHandler = (req: IncomingMessage, res: ServerResponse) => void;
 
